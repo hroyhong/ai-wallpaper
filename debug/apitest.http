@@ -1,0 +1,12 @@
+@baseUri = http://localhost:3001/api
+
+### generate wallpaper
+POST {{baseUri}}/gen-wallpaper
+Content-Type: application/json
+
+{
+  "description": "messaging herself"
+}
+
+### get wallpapers
+GET {{baseUri}}/get-wallpapers
