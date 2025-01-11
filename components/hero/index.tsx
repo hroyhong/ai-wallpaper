@@ -1,40 +1,27 @@
+import Input from "../input"
+
 export default function Hero() {
   return (
-    <header>
+    <section className="relative lg:py-20">
+    <header className="w-full h-full flex flex-col justify-between items-center">
       {/* Hero Container */}
-      <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10 md:py-20">
+      <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10">
         {/* Component */}
-        <div className="grid items-center justify-items-start gap-8 sm:gap-20 lg:grid-cols-2">
+        <div className="flex justify-center gap-8 sm:gap-20">
           {/* Hero Content */}
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center text-center max-w-2xl">
             {/* Hero Title */}
-            <h1 className="mb-4 text-4xl font-bold md:text-6xl">
-                Generate AI Beauties
+            <h1 className="mb-4 text-primary text-4xl font-bold md:text-6xl">
+              Generate AI Beauties
             </h1>
-            <p className="mb-6 max-w-lg text-sm text-gray-500 sm:text-xl md:mb-10 lg:mb-12">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-              aliquam, purus sit amet luctus venenatis, lectus
+            <p className="mb-6 max-w-lg text-sm text-gray-500 sm:text-xl">
+              Stunning beauties you want to generate, whether it's a portrait, a landscape, or a still life.
             </p>
-            {/* Hero Button */}
-            <div className="flex items-center">
-              <a
-                href="#"
-                className="mr-5 items-center rounded-md bg-black px-6 py-3 font-semibold text-white md:mr-6 lg:mr-8"
-              >
-                Let's Talk
-              </a>
-              <a href="#" className="flex max-w-full items-center font-bold">
-                <img
-                  src="https://assets.website-files.com/6458c625291a94a195e6cf3a/6458c625291a94bd85e6cf98_ArrowUpRight%20(4).svg"
-                  alt=""
-                  className="mr-2 inline-block max-h-4 w-5"
-                />
-                <p>View Showreel</p>
-              </a>
-            </div>
           </div>
         </div>
       </div>
     </header>
+    <Input />
+    </section>
   );
 }
