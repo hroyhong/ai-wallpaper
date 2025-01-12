@@ -6,7 +6,7 @@ export default function Header() {
     <div className="container mx-auto px-4 md:px-6 lg:px-8">
       <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
         <Link href="/" className="mr-6 flex items-center gap-2" prefetch={false}>
-          <WallpaperIcon className="h-6 w-6 text-primary" />
+          <BeautyIcon className="h-6 w-6 text-primary" />
           <span className="font-semibold text-primary text-lg">AI Beauties</span>
         </Link>
         <div className="ml-auto flex gap-2">
@@ -41,9 +41,9 @@ export default function Header() {
   )
 }
 
-interface WallpaperIconProps extends React.SVGProps<SVGSVGElement> {}
+interface BeautyIconProps extends React.SVGProps<SVGSVGElement> {}
 
-function WallpaperIcon(props: WallpaperIconProps) {
+function BeautyIcon(props: BeautyIconProps) {
   return (
     <svg
       {...props}

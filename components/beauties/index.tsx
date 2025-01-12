@@ -1,45 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Wallpaper } from "@/types/wallpaper";
+import { Beauty } from "@/types/beauty";
 
-export default function() {
-  const [wallpapers, setWallpapers] = useState<Wallpaper[] | null>(null);
+interface Props{
+    beauties: Beauty[]
+}
 
-  const fetchWallpapers = async function() {
-    const result = await fetch("/api/get-wallpapers");
-    const { data } = await result.json();
-
-    if (data) {
-      setWallpapers(data);
-    }
-  }
-
-  useEffect(() => {
-    fetchWallpapers();
-  }, []);
-
+export default function({ beauties }: Props) {
   return (
-    <section className="max-w-6xl mx-auto">
+    <section className="max-w-6xl mx-auto mt-10">
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-bold md:text-5xl">All Beauties</h2>
           <p className="mt-4 text-gray-600">Discover our collection of stunning beauties</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {wallpapers && wallpapers.map((wallpaper: Wallpaper, idx: number) => (
+          {beauties && beauties.map((beauty: Beauty, idx: number) => (
             <div key={idx} className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl dark:bg-gray-950">
               <img
-                src={wallpaper.img_url}
-                alt={wallpaper.img_description}
+                src={beauty.img_url}
+                alt={beauty.img_description}
                 className="w-full h-64 object-cover"
                 style={{ aspectRatio: "600/400", objectFit: "cover" }}
               />
               <div className="p-4 space-y-2">
-                <h3 className="text-xl font-semibold truncate">{wallpaper.img_description}</h3>
-                <p className="text-gray-500 dark:text-gray-400 line-clamp-2">
-                  {wallpaper.img_description}
-                </p>
+                <div className="flex items-center justify-between">
+                  <h3 className="text-gray-500 dark:text-gray-400 line-clamp-2 flex-1">{beauty.img_description}</h3>
+                  {beauty.user_avatar && (
+                    <img
+                      src={beauty.user_avatar}
+                      alt="User Avatar"
+                      className="w-8 h-8 rounded-full ml-2"
+                    />
+                  )}
+                </div>
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <svg

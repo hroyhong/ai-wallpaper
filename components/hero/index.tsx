@@ -2,7 +2,6 @@ import Input from "../input"
 
 export default function Hero() {
   return (
-    <section className="relative lg:py-20">
     <header className="w-full h-full flex flex-col justify-between items-center">
       {/* Hero Container */}
       <div className="mx-auto w-full max-w-7xl px-5 py-16 md:px-10">
@@ -21,7 +20,5 @@ export default function Hero() {
         </div>
       </div>
     </header>
-    <Input />
-    </section>
   );
 }
