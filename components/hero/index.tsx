@@ -1,5 +1,3 @@
-import Input from "../input"
-
 export default function Hero() {
   return (
     <header className="w-full h-full flex flex-col justify-between items-center">
@@ -14,7 +12,7 @@ export default function Hero() {
               Generate AI Beauties
             </h1>
             <p className="mb-6 max-w-lg text-sm text-gray-500 sm:text-xl">
-              Stunning beauties you want to generate, whether it's a portrait, a landscape, or a still life.
+              Stunning beauties you want to generate, whether it&apos;s a portrait, a landscape, or a still life.
             </p>
           </div>
         </div>
@@ -22,3 +20,5 @@ export default function Hero() {
     </header>
   );
 }
+
+Hero.displayName = 'Hero';

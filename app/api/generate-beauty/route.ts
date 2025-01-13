@@ -5,7 +5,6 @@ import { Beauty } from "@/types/beauty";
 import { ImageGenerateParams } from "openai/resources/images.mjs";
 import { currentUser } from "@clerk/nextjs/server";
 import { User } from "@/types/user";
-import { insertUser } from "@/models/user";
 import { saveUser } from "@/service/user";
 
 export async function POST(req: Request) {
