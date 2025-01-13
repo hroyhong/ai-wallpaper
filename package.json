@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.9.9",
     "@types/axios": "^0.14.4",
     "aws-sdk": "^2.1692.0",
     "axios": "^1.7.9",

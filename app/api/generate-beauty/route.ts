@@ -3,13 +3,37 @@ import { insertBeauty } from "@/models/beauty";
 import { getOpenaiClient } from "@/service/openai";
 import { Beauty } from "@/types/beauty";
 import { ImageGenerateParams } from "openai/resources/images.mjs";
+import { currentUser } from "@clerk/nextjs/server";
+import { User } from "@/types/user";
+import { insertUser } from "@/models/user";
+import { saveUser } from "@/service/user";
 
 export async function POST(req: Request) {
+  try {
     const client = getOpenaiClient();
     const { description } = await req.json();
+
+    const user = await currentUser();
+    if (!user || !user.emailAddresses || user.emailAddresses.length === 0) {
+      return Response.json({
+        code: -2,
+        message: "user not logged in",
+      });
+    }
+  
+    const user_email = user.emailAddresses[0].emailAddress;
+    const nickname = user.firstName;
+    const avatarUrl = user.imageUrl;
+    const userInfo: User = {
+      email: user_email,
+      nickname: nickname || "",
+      avatar_url: avatarUrl,
+    };
+
+    await saveUser(userInfo);
+
     console.log("description: ", description);
 
-    const user_email = "hroyhong@outlook.com";
     const image_size = "1024x1024";
     const llm_name = "dall-e-2";
 
@@ -61,4 +85,11 @@ export async function POST(req: Request) {
       message: "success",
       data: beauty
     });
+  } catch (error) {
+    console.error('Error in generate-beauty:', error);
+    return Response.json({
+      code: -1,
+      message: error instanceof Error ? error.message : 'Failed to generate beauty',
+    }, { status: 500 });
+  }
 }

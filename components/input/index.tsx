@@ -38,7 +38,6 @@ export default function ({ setBeauties }: Props) {
 
             if (data) {
                 const newBeauty: Beauty = {
-                    id: data.id,
                     img_url: data.img_url,
                     img_description: data.img_description,
                     img_size: data.img_size,

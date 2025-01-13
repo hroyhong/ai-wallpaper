@@ -8,3 +8,11 @@ CREATE TABLE beauties (
     llm_params JSON,
     created_at timestamptz
 );
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    nickname VARCHAR(255),
+    avatar_url VARCHAR(255),
+    created_at timestamptz
+);

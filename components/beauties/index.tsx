@@ -8,7 +8,7 @@ interface Props{
 
 export default function({ beauties }: Props) {
   return (
-    <section className="max-w-6xl mx-auto mt-10">
+    <section className="max-w-6xl mx-auto my-10">
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-bold md:text-5xl">All Beauties</h2>
           <p className="mt-4 text-gray-600">Discover our collection of stunning beauties</p>
