@@ -39,19 +39,21 @@ export default function Home() {
   }, []);
   
   return (
-    <div className="w-full h-full flex flex-col justify-between items-center">
+    <div className="w-full min-h-screen flex flex-col">
       <Header />
-      <Hero />
-      <Input setBeauties={setBeauties} />
-      {loading ? (
-        <div className="flex items-center justify-center min-h-[200px]">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-        </div>
-      ) : error ? (
-        <div className="text-red-500 text-center p-4">{error}</div>
-      ) : (
-        <Beauties beauties={beauties} />
-      )}
+      <main className="flex-1 flex flex-col">
+        <Hero />
+        <Input setBeauties={setBeauties} />
+        {loading ? (
+          <div className="flex items-center justify-center min-h-[200px]">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+          </div>
+        ) : error ? (
+          <div className="text-red-500 text-center p-4">{error}</div>
+        ) : (
+          <Beauties beauties={beauties} />
+        )}
+      </main>
       <Footer />
     </div>
   );
