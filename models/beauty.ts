@@ -59,36 +59,47 @@ export async function getBeauties(
   page: number,
   limit: number
 ): Promise<Beauty[] | undefined> {
-  if (page < 1) {
-    page = 1;
-  }
-  if (limit <= 0) {
-    limit = 50;
-  }
-  const offset = (page - 1) * limit;
-
-  const db = getDb();
-  const res = await db.query(
-    `select * from beauties limit $1 offset $2`,
-    [limit, offset]
-  );
-  if (res.rowCount === 0) {
-    return undefined;
-  }
-
-  const { rows } = res;
-  let beauties: Beauty[] = []
-  rows.forEach(row => {
-    const beauty: Beauty = {
-      user_email: row.user_email,
-      img_description: row.img_description,
-      img_size: row.img_size,
-      img_url: row.img_url,
-      llm_name: row.llm_name,
-      llm_params: row.llm_params,
-      created_at: row.created_at,
+  try {
+    if (page < 1) {
+      page = 1;
     }
-    beauties.push(beauty)
-  })
-  return beauties;
+    if (limit <= 0) {
+      limit = 50;
+    }
+    const offset = (page - 1) * limit;
+
+    const db = getDb();
+    if (!db) {
+      throw new Error('Failed to connect to database');
+    }
+
+    console.log('Executing query with params:', { limit, offset });
+    const res = await db.query(
+      `select * from beauties limit $1 offset $2`,
+      [limit, offset]
+    );
+
+    if (res.rowCount === 0) {
+      return [];
+    }
+
+    const { rows } = res;
+    let beauties: Beauty[] = []
+    rows.forEach(row => {
+      const beauty: Beauty = {
+        user_email: row.user_email,
+        img_description: row.img_description,
+        img_size: row.img_size,
+        img_url: row.img_url,
+        llm_name: row.llm_name,
+        llm_params: row.llm_params,
+        created_at: row.created_at,
+      }
+      beauties.push(beauty)
+    })
+    return beauties;
+  } catch (error) {
+    console.error('Error in getBeauties:', error);
+    throw error;
+  }
 }
